@@ -38,33 +38,71 @@
 
 // app.listen(3000)
 
-import express from "express";
-import router from "./router/auth_router.js";
-import cors from "cors";
-import error_middleware from "./middlewares/error_middleware.js";
-import "dotenv/config";
-import connectDB from "./utils/db.js";
+// import express from "express";
+// import router from "./router/auth_router.js";
+// import cors from "cors";
+// import error_middleware from "./middlewares/error_middleware.js";
+// import "dotenv/config";
+// import connectDB from "./utils/db.js";
+
+// const app = express();
+
+// // CORS configuration
+// const corsOptions = {
+//   origin: [process.env.FRONTEND_URL, "http://localhost:5173"], // allow local + deployed frontend
+//   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
+//   credentials: true,
+// };
+
+// // Apply middleware
+// app.use(cors(corsOptions));
+// app.use(express.json());
+// app.use("/api/auth", router);
+// app.use(error_middleware); // Error handling middleware
+
+// // Connect DB and start server
+// connectDB().then(() => {
+//   console.log("Database connected successfully!");
+//   const PORT = process.env.PORT || 3000; // Use Render's PORT or fallback to 3000
+//   app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`);
+//   });
+// });
+
+import express from 'express';
+import router from './router/auth_router.js';
+import cors from 'cors';
+import error_middleware from './middlewares/error_middleware.js';
+import connectDB from './utils/db.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// CORS configuration
-const corsOptions = {
-  origin: [process.env.FRONTEND_URL, "http://localhost:5173"], // allow local + deployed frontend
+// Cors configuration
+var corsOptions = {
+  origin: '*', // allow public requests
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
   credentials: true,
 };
-
-// Apply middleware
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/api/auth", router);
-app.use(error_middleware); // Error handling middleware
+app.use(error_middleware);
+
+// Serve frontend
+app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
+});
 
 // Connect DB and start server
 connectDB().then(() => {
-  console.log("Database connected successfully!");
-  const PORT = process.env.PORT || 3000; // Use Render's PORT or fallback to 3000
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
+  console.log("Server running smoothly!");
 });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
