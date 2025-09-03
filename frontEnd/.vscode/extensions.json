@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "bradlc.vscode-tailwindcss",
+        "bryceo.simple-react-hooks-snippets",
+        "burkeholland.simple-react-snippets",
+        "dsznajder.es7-react-js-snippets",
+        "rodrigovallades.es7-react-js-snippets"
+    ]
+}

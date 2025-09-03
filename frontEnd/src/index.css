@@ -1,0 +1,102 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+body{
+
+/* background-color: black; */
+background-image: url('./assets/cardsbg.jpg' )  ;
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+
+
+}
+
+
+.cardr:hover pf{
+  color: rgb(85, 255, 230);
+  font-weight: bold;
+  font-size: 20.5px;
+  transition: all 0.3s ease-in-out;
+  
+
+}
+.cardr:hover jf{
+  color: rgb(255, 0, 0);
+  transition: all 0.3s ease-in-out;
+}
+.cardr:hover tf{
+  font-size: 29.5px;
+  color: rgb(255, 255, 255);
+  transition: all 0.3s ease-in-out;
+}
+
+.cardr:hover img{
+      @media (hover: hover) {
+          rotate: 360deg;
+      }
+  }
+
+  .cardr:hover img {
+    animation: rotate 0.1s linear infinite;
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .cardr img {
+    animation: rotate 0.1s linear infinite;
+    
+  }
+  
+  .cardr img {
+    animation-play-state: paused;
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .cardr img {
+    animation: rotate 0s linear infinite;
+  }
+  
+  .cardr img {
+    animation-play-state: paused;
+    transform: rotate(0deg) !important; 
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+ 
+  .cardr button {
+    transition: transform 0.5s;
+  }
+  
+  .cardr:hover button {
+    transform: scale(1.1); 
+  }
+  
+
+  .cardr:hover img {
+    mask: radial-gradient(ellipse, black 72%, transparent 55%);
+  }
